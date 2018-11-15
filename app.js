@@ -1,7 +1,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const app = express();
+const exphbs = require("express-handlebars");
+
 const configRoutes = require("./routes");
+const app = express();
+
+const static = express.static(__dirname + "/public");
+app.use("/public", static);
+app.use(bodyParser.urlencoded()); // May or may not end up being used
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 
 app.use(bodyParser.json());
 configRoutes(app);
