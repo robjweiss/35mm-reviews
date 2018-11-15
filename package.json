@@ -1,0 +1,29 @@
+{
+  "name": "35mm-reviews",
+  "version": "1.0.0",
+  "description": "A simple web app for reviewing and rating movies",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robjweiss/35mm-reviews.git"
+  },
+  "keywords": [
+    "movie",
+    "review"
+  ],
+  "author": "Rob Weiss & Kevin Hockenjos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robjweiss/35mm-reviews/issues"
+  },
+  "homepage": "https://github.com/robjweiss/35mm-reviews#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongodb": "^3.1.9"
+  }
+}
