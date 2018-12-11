@@ -10,6 +10,7 @@ app.use("/public", static);
 app.use(bodyParser.urlencoded()); // May or may not end up being used
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 app.use(bodyParser.json());
 configRoutes(app);
