@@ -1,18 +1,7 @@
 <img src="{{posterPath}}" alt="{{title}}">
 
 <h2>Write a review:</h2>
-<form action="/movie/{{movieId}}" method="POST" class="create-review-form">
-    <label for="title">Title:</label>
-    <input id="title" type="text" name="reviewTitle" required="true"/>
-
-    <label for="rating">Rating:</label>
-    <input id="rating" type="number" name="reviewRating" min="1" max="5" required="true">
-
-    <label for="body">Review:</label>
-    <textarea id="body" name="reviewBody" required="true"></textarea>
-
-    <button type="submit">Submit</button>
-</form>
+{{> review-form}}
 
 <h2>Past Reviews</h2>
 {{#each reviews}}
@@ -20,5 +9,7 @@
         <h3>{{title}}</h3>
         <p>Rating: {{rating}}</p>
         <p>Review: {{body}}</p>
+        <a href="/review/edit/{{_id}}">Edit</a>
+        <a href="/review/delete/{{_id}}">Delete</a>
     </article>
 {{/each}}

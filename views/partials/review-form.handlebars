@@ -1,0 +1,12 @@
+<form action={{action}} method="POST" class="create-review-form">
+    <label for="title">Title:</label>
+    <input id="title" type="text" name="reviewTitle" required="true" value={{reviewTitle}}>
+
+    <label for="rating">Rating:</label>
+    <input id="rating" type="number" name="reviewRating" min="1" max="5" required="true" value={{reviewRating}}>
+
+    <label for="body">Review:</label>
+    <textarea id="body" name="reviewBody" required="true">{{reviewBody}}</textarea>
+
+    <button type="submit">Submit</button>
+</form>

@@ -51,7 +51,7 @@ router.get("/:movieId", async (req, res) => {
             else {
                 const posterPath = "https://image.tmdb.org/t/p/w500" + body.poster_path;
 
-                res.render("movie", { title: body.title, movieId: req.params.movieId, posterPath: posterPath, reviews: reviews});
+                res.render("movie", {title: body.title, action: "/review/write/" + req.params.movieId, posterPath: posterPath, reviews: reviews});
             }
     
         });
@@ -61,17 +61,5 @@ router.get("/:movieId", async (req, res) => {
     }
 
 });
-
-router.post("/:movieId", async (req, res) => {
-    const newReview = req.body;
-
-    try {
-        const { reviewTitle, reviewRating, reviewBody} = newReview;
-
-        await reviewsData.createReview(reviewTitle, reviewBody, reviewRating, req.params.movieId);
-    } catch (e) {
-        res.status(500).json({error: e});
-    }
-})
 
 module.exports = router;
