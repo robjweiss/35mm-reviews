@@ -8,7 +8,9 @@ const reviewsData = data.reviews;
 const cookie = require("cookie-parser");
 const bcrypt = require("bcrypt");
 
-app.get("/logout", (req,res) => {
+router.get("/", (req,res) => {
 	res.clearCookie("AuthCookie");
 	res.redirect("/")
 })
+
+module.exports = router;

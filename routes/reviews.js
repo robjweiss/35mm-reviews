@@ -28,7 +28,7 @@ router.get("/edit/:reviewId", async (req, res) => {
         res.status(404);
     }
 	else if(review.author == req.cookies.AuthCookie) {
-		res.render("review", {title: "Edit Review", action: "/review/edit/" + review._id, reviewTitle: review.title, reviewRating: review.rating, reviewBody: review.body});
+		res.render("edit-review", {title: "Edit Review", action: "/review/edit/" + review._id, reviewTitle: review.title, reviewRating: review.rating, reviewBody: review.body});
 	}
 
 });
@@ -49,14 +49,15 @@ router.post("/edit/:reviewId", async (req, res) => {
 });
 
 router.get("/delete/:reviewId", async (req, res) => {
-    try {
-        const deletedReview = await reviewsData.deleteReview(req.params.reviewId);
-        const movieId = deletedReview.movie_id;
+		const review = await reviewsData.getReview(req.params.reviewId);
+		if(req.cookies.AuthCookie == review.author){ 
+			const deletedReview = await reviewsData.deleteReview(req.params.reviewId);
+			const movieId = deletedReview.movie_id;
+			res.redirect("/movie/" + movieId);
+		} else {
+		res.redirect('back');
+		}
 
-        res.redirect("/movie/" + movieId);
-    } catch (e) {
-        res.status(500).json({ error: e });
-    }
 });
 
 module.exports = router;
