@@ -23,10 +23,13 @@
   },
   "homepage": "https://github.com/robjweiss/35mm-reviews#readme",
   "dependencies": {
+    "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
-    "mongodb": "^3.1.9",
+    "mongodb": "^3.1.10",
+    "passport-slack": "0.0.7",
     "request": "^2.88.0",
     "uuid": "^3.3.2"
   }

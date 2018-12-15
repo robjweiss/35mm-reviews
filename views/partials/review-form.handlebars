@@ -1,12 +1,12 @@
 <form action={{action}} method="POST" class="create-review-form">
     <label for="title">Title:</label>
-    <input id="title" type="text" name="reviewTitle" required="true" value={{reviewTitle}}>
+    <input id="title" aria-label="Title" type="text" name="reviewTitle" required="true" placeholder="Title" value={{reviewTitle}}>
 
     <label for="rating">Rating:</label>
-    <input id="rating" type="number" name="reviewRating" min="1" max="5" required="true" value={{reviewRating}}>
+    <input id="rating" aria-label="Rating" type="number" name="reviewRating" min="1" max="5" placeholder="Stars" required="true" value={{reviewRating}}>
 
     <label for="body">Review:</label>
-    <textarea id="body" name="reviewBody" required="true">{{reviewBody}}</textarea>
+    <textarea id="body" aria-label="Review" name="reviewBody" placeholder="Review" required="true">{{reviewBody}}</textarea>
 
     <button type="submit">Submit</button>
 </form>

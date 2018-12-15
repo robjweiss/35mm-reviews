@@ -1,0 +1,15 @@
+<form id="login-form" action="/login" method="post">
+          <label for="username">Username: </label>
+          <input id="username" type="text" name="username" placeholder="Username">
+          <label for="password">Password: </label>
+          <input id="password" type="password" name="password" placeholder="Password">
+          <button type="submit">Submit</button>
+        </form>
+		
+		<script>
+		flag = "{{ flag }}";
+		if(flag == "false") {
+		alert("Failed to login");
+		}
+		</script>
+</head>

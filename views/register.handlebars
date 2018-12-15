@@ -1,0 +1,15 @@
+<form id="register-form" action="/register" method="post">
+          <label for="username">Username: </label>
+          <input id="username" type="text" name="username" placeholder="Username">
+          <label for="password">Password: </label>
+          <input id="password" type="password" name="password" placeholder="Password">
+          <button type="submit">Submit</button>
+        </form>
+		
+		<script>
+		error = "{{error}}"
+		if(error != "") {
+		alert("Failed to Register");
+		}
+		</script>
+</head>

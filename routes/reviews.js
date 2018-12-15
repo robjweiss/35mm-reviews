@@ -4,17 +4,21 @@ const data = require("../data");
 const reviewsData = data.reviews;
 
 router.post("/write/:movieId", async (req, res) => {
+	if(req.cookies.AuthCookie) {
     const newReview = req.body;
 
     try {
         const { reviewTitle, reviewRating, reviewBody} = newReview;
 
-        await reviewsData.createReview(reviewTitle, reviewBody, reviewRating, req.params.movieId);
+        await reviewsData.createReview(reviewTitle, reviewBody, reviewRating, req.params.movieId, req.cookies.AuthCookie);
 
         res.redirect("/movie/" + req.params.movieId);
     } catch (e) {
         res.status(500).json({error: e});
     }
+	} else {
+		res.status(401);
+	}
 });
 
 router.get("/edit/:reviewId", async (req, res) => {
@@ -23,15 +27,14 @@ router.get("/edit/:reviewId", async (req, res) => {
     if (review === null) {
         res.status(404);
     }
+	else if(review.author == req.cookies.AuthCookie) {
+		res.render("review", {title: "Edit Review", action: "/review/edit/" + review._id, reviewTitle: review.title, reviewRating: review.rating, reviewBody: review.body});
+	}
 
-    else {
-        res.render("review", {title: "Edit Review", action: "/review/edit/" + review._id, reviewTitle: review.title, reviewRating: review.rating, reviewBody: review.body});
-    }
 });
 
 router.post("/edit/:reviewId", async (req, res) => {
     const editedReview = req.body;
-
     try {
         const {reviewTitle, reviewRating, reviewBody} = editedReview;
 

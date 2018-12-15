@@ -3,7 +3,7 @@ const mongoCollections = require("../config/mongoCollections");
 const reviews = mongoCollections.reviews;
 
 module.exports = {
-    async createReview(title, body, rating, movieId) {
+    async createReview(title, body, rating, movieId, owner) {
         if (rating === NaN) throw "rating must be a number"; // Might do this check client side
 
         const reviewsCollection = await reviews();
@@ -15,7 +15,8 @@ module.exports = {
             "body" : body,
             "rating" : rating,
             "movie_id" : movieId,
-            "_id" : uuid
+            "_id" : uuid, 
+			"author": owner
         }
 
         const insertInfo = await reviewsCollection.insertOne(newReview);
