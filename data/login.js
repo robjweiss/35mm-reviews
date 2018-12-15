@@ -13,6 +13,7 @@ module.exports = {
 			const newUser = {
             "username" : username,
             "password" : hash,
+			"favorites" : [],
             "_id" : uuid
 			}
 
@@ -31,4 +32,14 @@ module.exports = {
         return await usersArray;
     },
 
+	async toggleFavorite(username,movie) {
+		if(!movie) throw "need movie";
+		
+		const userCollection = await users();
+		const userArray = await userCollection.findOne({username: username} );
+		await userCollection.updateOne( {_id: userArray._id},{$addToSet: {favorites: [movie] }}   )
+		
+		return "Favorited"
+		
+	}
 }

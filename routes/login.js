@@ -18,10 +18,9 @@ router.post("/", async (req, res) => {
 	if(!flag) {
 		res.render("login", {title: "Login"});
 	}
-	console.log(req.body.password);
+
 	userCheck = await users.getUser(username);
-	console.log(userCheck.password);
-	
+
 	if(userCheck) {
 		bcrypt.compare(req.body.password, userCheck.password, function(err, result) {
     if(!result){

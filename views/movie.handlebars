@@ -1,5 +1,6 @@
 <img src="{{posterPath}}" alt="{{title}}">
 
+<div><a class="favorite">Favorite?</a></div>
 <h2>Write a review:</h2>
 {{> review-form}}
 
@@ -13,3 +14,11 @@
         <a href="/review/delete/{{_id}}">Delete</a>
     </article>
 {{/each}}
+
+<script>
+$(".favorite").click(function(){
+  $.post(window.location.pathname + "/favorite", function(data, status){
+    alert(data)
+  });
+});
+</script>

@@ -5,9 +5,13 @@ const tmdb = require("../config/tmdb")
 const apiKey = tmdb.apiKey;
 const data = require("../data");
 const reviewsData = data.reviews;
-
+const users = data.login;
 router.get("/search", (req, res) => {
+	if(!req.cookies.AuthCookie){
+	    res.redirect("/login");
+	} else {
     res.render("search", {title: "Search"});
+	}
 });
 
 router.post("/search", async (req, res) => {
@@ -31,6 +35,14 @@ router.post("/search", async (req, res) => {
 
     });
 
+});
+
+router.post("/:movieId/favorite", async (req,res) => {
+	if(!req.cookies.AuthCookie) {
+		res.redirect("/login");
+	} else {
+	res.send(await users.toggleFavorite(req.cookies.AuthCookie, req.params.movieId));
+	}
 });
 
 router.get("/:movieId", async (req, res) => {
